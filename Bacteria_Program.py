@@ -16,10 +16,10 @@
     - We can use this button to also validate the entries
 - "Save" button that writes the data to separate lines in a file of the user's choosing.
     - Need an entry box for filename.
-- "Linear Projection" button which plots a graph (matplotlib) of the bacteria's growth or decline.
+- "Graph" button which plots a graph (matplotlib) of the bacteria's growth or decline.
     - Formula: y = a*x + b, where b = (morning population reading), and
       a = ((evening population reading) – (morning population reading))/12
-    - When the “Linear Projection” button is pressed, the user can be prompted to enter the starting x value for the
+    - When the “Graph” button is pressed, the user can be prompted to enter the starting x value for the
       plot, and the ending x value for the plot.
 - "Add Bacteria" button: When this button is pressed, a window is opened, and a bacterial culture is added to the dropdown
   menu, as well as to the file bacteria.dat.
@@ -42,10 +42,18 @@ def save():
 def graph():
     pass
 
+def add_bacteria():
+    pass
+
+def add_medicine():
+    pass
+
+def exit():
+    quit()
 
 ### MAIN WINDOW ###
 root = Tk()
-root.geometry("550x350")
+root.geometry("550x355")
 root.title("Medrix Database")
 root.iconbitmap("pill.ico")
 
@@ -135,6 +143,25 @@ save_button.grid(row=0, column=0, padx=5, ipadx=15, ipady=5)
 graph_button = Button(frame4, text="GRAPH", command=graph)
 graph_button.grid(row=0, column=1, padx=5, ipadx=10, ipady=5)
 
+# EXIT BUTTON
+exit_button = Button(frame4, text="EXIT", command=exit)
+exit_button.grid(row=0, column=2, padx=5, ipadx=15, ipady=5)
 
+
+### MENU ###
+### MENUS ###
+root_menu = Menu(root, tearoff=False)
+root.config(menu=root_menu)
+
+# File Menu
+file_menu = Menu(root_menu, tearoff=False)
+root_menu.add_cascade(label="File", menu=file_menu)
+file_menu.add_command(label="Exit", command=exit)
+
+# Edit Menu
+edit_menu = Menu(root_menu, tearoff=False)
+root_menu.add_cascade(label="Edit", menu=edit_menu)
+edit_menu.add_command(label="Add Bacteria", command=add_bacteria)
+edit_menu.add_command(label="Add Medicine", command=add_medicine)
 
 root.mainloop()
