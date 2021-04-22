@@ -43,7 +43,28 @@ def graph():
     pass
 
 def add_bacteria():
-    pass
+    #Creates Window for bacteria
+    BacteriaWindow = Tk()
+    #Creates title for window
+    BacteriaWindow.title("Add Bacteria")
+    #Sets dimensions of window
+    BacteriaWindow.geometry("225x90")
+    #Input Box and Variable
+    BacteriaAddLabel = Label(BacteriaWindow, text="Bacteria Name: ", pady=2)
+    BacteriaAddLabel.grid(row=0, column=0, sticky=E)
+    BacteriaAddEntry = Entry(BacteriaWindow, width=16)
+    BacteriaAddEntry.grid(row=0, column=1, sticky=W, pady=5, padx=5)
+
+    def AddBacteriaButton():
+        BacteriaList = open("bacteria.dat", 'a')
+        BacteriaAdded = BacteriaAddEntry.get()
+        BacteriaList.writelines("{}\n".format(BacteriaAdded))
+        BacteriaList.close()
+
+    #Add Button
+    AddButton = Button(BacteriaWindow, text="Add", width=15, height=2, command=AddBacteriaButton)
+    AddButton.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
+
 
 def add_medicine():
     pass
@@ -163,5 +184,7 @@ edit_menu = Menu(root_menu, tearoff=False)
 root_menu.add_cascade(label="Edit", menu=edit_menu)
 edit_menu.add_command(label="Add Bacteria", command=add_bacteria)
 edit_menu.add_command(label="Add Medicine", command=add_medicine)
+
+
 
 root.mainloop()
