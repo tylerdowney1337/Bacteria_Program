@@ -34,7 +34,73 @@ import datetime
 
 ### FUNCTIONS ###
 def confirm():
-    pass
+    # DEFINE VALIDATIONS
+    valid_numbers = set("1234567890-")
+    valid_letters = set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+
+    # DATE
+    if date_var.get() == "":
+        messagebox.showerror(title="Input Error", message="Date cannot be blank.")
+        date_entry.focus_set()
+        return
+    elif set(date_var.get()).issubset(valid_numbers):
+        date = date_var.get()
+    else:
+        messagebox.showerror(title="Input Error", message="Date can only contain numbers.")
+        date_entry.focus_set()
+        return
+
+    # ID NUMBER
+    if id_number_var.get() == "":
+        messagebox.showerror(title="Input Error", message="ID number cannot be blank.")
+        id_number_entry.focus_set()
+        return
+    elif set(id_number_var.get()).issubset(valid_numbers):
+        id_number = id_number_var.get()
+    else:
+        messagebox.showerror(title="Input Error", message="ID number can only contain numbers.")
+        id_number_entry.focus_set()
+        return
+
+    # BACTERIA
+    bacteria = bacteria_var.get()
+
+    # MEDICINE
+    medicine = medicine_var.get()
+
+    # MORNING COUNT
+    if morning_var.get() == "":
+        messagebox.showerror(title="Input Error", message="Morning count cannot be blank.")
+        morning_entry.focus_set()
+        return
+    elif set(morning_var.get()).issubset(valid_numbers):
+        morning_count = morning_var.get()
+    else:
+        messagebox.showerror(title="Input Error", message="Morning Count can only contain numbers.")
+        morning_entry.focus_set()
+        return
+
+    # EVENING COUNT
+    if evening_var.get() == "":
+        messagebox.showerror(title="Input Error", message="Evening count cannot be blank.")
+        evening_entry.focus_set()
+        return
+    elif set(evening_var.get()).issubset(valid_numbers):
+        evening_count = evening_var.get()
+    else:
+        messagebox.showerror(title="Input Error", message="Evening Count can only contain numbers.")
+        evening_entry.focus_set()
+        return
+
+    # PRINT TO LISTBOX
+    bacteria_listbox.delete(0, END)
+    bacteria_listbox.insert(0, "Date: {}".format(date))
+    bacteria_listbox.insert(1, "ID Number: {}".format(id_number))
+    bacteria_listbox.insert(2, "Bacteria: {}".format(bacteria))
+    bacteria_listbox.insert(3, "Medicine: {}".format(medicine))
+    bacteria_listbox.insert(4, "Morning Count: {}".format(morning_count))
+    bacteria_listbox.insert(5, "Evening Count: {}".format(evening_count))
+
 
 def save():
     pass
@@ -67,7 +133,29 @@ def add_bacteria():
 
 
 def add_medicine():
-    pass
+    # Creates Window for bacteria
+    MedicineWindow = Tk()
+
+    # Creates title for window
+    MedicineWindow.title("Add Medicine")
+
+    # Sets dimensions of window
+    MedicineWindow.geometry("225x90")
+
+    # Input Box and Variable
+    MedicineAddLabel = Label(MedicineWindow, text="Medicine Name: ", pady=2)
+    MedicineAddLabel.grid(row=0, column=0, sticky=E)
+    MedicineAddEntry = Entry(MedicineWindow, width=16)
+    MedicineAddEntry.grid(row=0, column=1, sticky=W, pady=5, padx=5)
+    def AddMedicineButton():
+        MedicineList = open("medicine.dat", 'a')
+        MedicineAdded = MedicineAddEntry.get()
+        MedicineList.writelines("{}\n".format(MedicineAdded))
+        MedicineList.close()
+
+    # Add Button
+    AddButton = Button(MedicineWindow, text="Add", width=15, height=2, command=AddMedicineButton)
+    AddButton.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
 
 def exit():
     quit()
