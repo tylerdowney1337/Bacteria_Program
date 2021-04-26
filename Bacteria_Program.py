@@ -153,52 +153,52 @@ def graph():
 
 def add_bacteria():
     #Creates Window for bacteria
-    BacteriaWindow = Tk()
+    bacteria_window = Tk()
     #Creates title for window
-    BacteriaWindow.title("Add Bacteria")
+    bacteria_window.title("Add Bacteria")
     #Sets dimensions of window
-    BacteriaWindow.geometry("225x90")
+    bacteria_window.geometry("225x90")
     #Input Box and Variable
-    BacteriaAddLabel = Label(BacteriaWindow, text="Bacteria Name: ", pady=2)
-    BacteriaAddLabel.grid(row=0, column=0, sticky=E)
-    BacteriaAddEntry = Entry(BacteriaWindow, width=16)
-    BacteriaAddEntry.grid(row=0, column=1, sticky=W, pady=5, padx=5)
+    bacteria_add_label = Label(bacteria_window, text="Bacteria Name: ", pady=2)
+    bacteria_add_label.grid(row=0, column=0, sticky=E)
+    bacteria_add_entry = Entry(bacteria_window, width=16)
+    bacteria_add_entry.grid(row=0, column=1, sticky=W, pady=5, padx=5)
 
-    def AddBacteriaButton():
-        BacteriaList = open("bacteria.dat", 'a')
-        BacteriaAdded = BacteriaAddEntry.get()
-        BacteriaList.writelines("{}\n".format(BacteriaAdded))
-        BacteriaList.close()
+    def add_bacteria_button():
+        bacteria_list = open("bacteria.dat", 'a')
+        bacteria_added = bacteria_add_entry.get()
+        bacteria_list.writelines("{}\n".format(bacteria_added))
+        bacteria_list.close()
 
     #Add Button
-    AddButton = Button(BacteriaWindow, text="Add", width=15, height=2, command=AddBacteriaButton)
-    AddButton.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
+    add_button = Button(bacteria_window, text="Add", width=15, height=2, command=add_bacteria_button)
+    add_button.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
 
 
 def add_medicine():
     # Creates Window for bacteria
-    MedicineWindow = Tk()
+    medicine_window = Tk()
 
     # Creates title for window
-    MedicineWindow.title("Add Medicine")
+    medicine_window.title("Add Medicine")
 
     # Sets dimensions of window
-    MedicineWindow.geometry("225x90")
+    medicine_window.geometry("225x90")
 
     # Input Box and Variable
-    MedicineAddLabel = Label(MedicineWindow, text="Medicine Name: ", pady=2)
-    MedicineAddLabel.grid(row=0, column=0, sticky=E)
-    MedicineAddEntry = Entry(MedicineWindow, width=16)
-    MedicineAddEntry.grid(row=0, column=1, sticky=W, pady=5, padx=5)
-    def AddMedicineButton():
-        MedicineList = open("medicine.dat", 'a')
-        MedicineAdded = MedicineAddEntry.get()
-        MedicineList.writelines("{}\n".format(MedicineAdded))
-        MedicineList.close()
+    medicine_add_label = Label(medicine_window, text="Medicine Name: ", pady=2)
+    medicine_add_label.grid(row=0, column=0, sticky=E)
+    medicine_add_entry = Entry(medicine_window, width=16)
+    medicine_add_entry.grid(row=0, column=1, sticky=W, pady=5, padx=5)
+    def add_medicine_button():
+        medicine_list = open("medicine.dat", 'a')
+        medicine_added = medicine_add_entry.get()
+        medicine_list.writelines("{}\n".format(medicine_added))
+        medicine_list.close()
 
     # Add Button
-    AddButton = Button(MedicineWindow, text="Add", width=15, height=2, command=AddMedicineButton)
-    AddButton.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
+    add_button = Button(medicine_window, text="Add", width=15, height=2, command=add_medicine_button)
+    add_button.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
 
 def exit():
     quit()
