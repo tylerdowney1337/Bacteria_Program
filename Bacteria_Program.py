@@ -33,7 +33,18 @@ from tkinter import ttk, messagebox
 import datetime
 
 ### FUNCTIONS ###
+confirmed = False
+
 def confirm():
+    # GLOBALIZE VARIABLES
+    global date
+    global id_number
+    global bacteria
+    global medicine
+    global morning_count
+    global evening_count
+    global confirmed
+
     # DEFINE VALIDATIONS
     valid_numbers = set("1234567890-")
     valid_letters = set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -92,6 +103,8 @@ def confirm():
         evening_entry.focus_set()
         return
 
+    confirmed = True
+
     # PRINT TO LISTBOX
     bacteria_listbox.delete(0, END)
     bacteria_listbox.insert(0, "Date: {}".format(date))
@@ -103,7 +116,37 @@ def confirm():
 
 
 def save():
-    pass
+    if confirmed == True:
+        #Creates Save Window
+        save_window = Tk()
+        #Creates title for window
+        save_window.title("Save")
+        #Sets Dimensions for window
+        save_window.geometry("205x85")
+        #input Box and Variable
+        savelabel= Label(save_window, text="Filename: ", padx=5, pady=5)
+        #shows label on grid
+        savelabel.grid(row=0, column=0, sticky=E)
+        #shows entry box
+        filename_entry = Entry(save_window, width=16)
+        filename_entry.grid(row=0, column= 1, sticky=W, pady= 5, padx= 5)
+
+        # SAVE TO FILE FUNCTION
+        def save_to_file():
+                file = open(f"{filename_entry.get()}", "w")
+                file.writelines(f"Date: {date}\n")
+                file.writelines(f"Bacteria: {bacteria}\n")
+                file.writelines(f"ID Number: {id_number}\n")
+                file.writelines(f"Medicine: {medicine}\n")
+                file.writelines(f"Morning Count: {morning_count}\n")
+                file.writelines(f"Evening Count: {evening_count}\n")
+                file.close()
+        # SAVE BUTTON
+        save_to_file_button = Button(save_window, text="SAVE", command=save_to_file)
+        save_to_file_button.grid(row=1, column=0, columnspan=2, padx=5, pady=5, ipadx=10, ipady=5)
+    else:
+        messagebox.showerror(title="CONFIRMATION ERROR", message="Data must be confirmed before saving...")
+
 
 def graph():
     pass
