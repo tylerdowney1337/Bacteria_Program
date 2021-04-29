@@ -31,6 +31,7 @@
 from tkinter import *
 from tkinter import ttk, messagebox
 import datetime
+import matplotlib.pyplot as plt
 
 ### FUNCTIONS ###
 confirmed = False
@@ -149,7 +150,25 @@ def save():
 
 
 def graph():
-    pass
+    # x axis values
+    x = [0, 6, 12, 18, 24, 30]
+    # Y axis values
+    y = [100, 80, 60, 40, 20, 0]
+
+    # plotting the points
+    plt.plot(x, y, color='red', linestyle='solid', linewidth=2,
+             marker='o', markerfacecolor='black', markersize=12)
+    # setting x and y axis range
+    plt.ylim(1, int(f"{morning_count}"))
+    plt.xlim(1, 30)
+    # naming the x axis
+    plt.xlabel('Bacteria')
+    # naming the y axis
+    plt.ylabel('Medicine')
+    # giving a title to my graph
+    plt.title('Information')
+    # function to show the plot
+    plt.show()
 
 def add_bacteria():
     #Creates Window for bacteria
